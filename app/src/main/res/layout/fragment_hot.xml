@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back_ground_hot">
+
+        <Button
+            android:id="@+id/btnPopular"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_toLeftOf="@+id/btnTopRate"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Popular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:background="@drawable/custom_hot_screen_button"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null">
+        </Button>
+
+        <Button
+            android:id="@+id/btnTopRate"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Top Rate"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_hot_screen_button_not_click"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null">
+        </Button>
+
+        <Button
+            android:id="@+id/btnUpComming"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_toRightOf="@+id/btnTopRate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="Up Comming"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_hot_screen_button_not_click"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null">
+        </Button>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvHotMovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnTopRate"
+            android:layout_marginTop="10dp"
+            android:background="@color/back_ground_hot">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</ScrollView>
