@@ -1,20 +1,22 @@
 package com.sun.moviedb_53.data.model
 
 data class MovieDetails(
-    val id: Int?,
-    val title: String?,
-    val imageUrl: String?,
-    val rate: Double?,
-    val productionCountry: String?,
-    val description: String?,
-    val imagePoster: String?,
-    val genres: String?,
-    val releaseDate: String?,
-    val tagLine: String?,
+    val id: Int,
+    val title: String,
+    val imageUrl: String,
+    val rate: Double,
+    val productionCountry: String,
+    val description: String,
+    val imagePoster: String,
+    val genres: String,
+    val releaseDate: String,
+    val tagLine: String,
 
 //    val genres: MutableList<Genres>?,
 //    val companies: MutableList<Company>?
-)
+) {
+    var isFavorite: Boolean = false
+}
 
 object MoviesDetailsEntry {
     const val ID = "id"
