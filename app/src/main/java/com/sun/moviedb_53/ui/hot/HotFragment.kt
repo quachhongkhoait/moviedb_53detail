@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sun.moviedb_53.R
 import com.sun.moviedb_53.base.BaseFragment
 import com.sun.moviedb_53.data.model.HotMovie
-import com.sun.moviedb_53.data.source.MovieRepository
+import com.sun.moviedb_53.data.source.repository.MovieRepository
 import com.sun.moviedb_53.utils.HotMovieType
 import kotlinx.android.synthetic.main.fragment_hot.*
 

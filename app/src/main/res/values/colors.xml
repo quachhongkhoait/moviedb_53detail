@@ -10,4 +10,6 @@
     <color name="yellow">#FFE500</color>
     <color name="back_ground_hot">#081B27</color>
     <color name="button_not_click">#122430</color>
+    <color name="favorite_default">#B3FFFFFF</color>
+    <color name="favorite_selected">#FF0000</color>
 </resources>

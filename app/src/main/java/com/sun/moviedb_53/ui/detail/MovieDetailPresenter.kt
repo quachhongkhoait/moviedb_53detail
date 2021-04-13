@@ -2,23 +2,26 @@ package com.sun.moviedb_53.ui.detail
 
 import android.content.Context
 import com.sun.moviedb_53.data.model.MovieDetails
-import com.sun.moviedb_53.data.source.MovieRepository
+import com.sun.moviedb_53.data.source.repository.MovieRepository
 import com.sun.moviedb_53.data.source.local.Favorite
 import com.sun.moviedb_53.data.source.remote.OnFetchDataJsonListener
+import com.sun.moviedb_53.data.source.repository.FavoriteRepository
 
-class MovieDetailPresenter(private val repository: MovieRepository) :
-        DetailMovieContact.Presenter {
+class MovieDetailPresenter(
+    private val repository: MovieRepository,
+    private val repositoryLocal: FavoriteRepository
+) :
+    DetailMovieContact.Presenter {
 
     private var context: Context? = null
     private var view: DetailMovieContact.View? = null
-//    private var favoriteController: FavoriteController? = null
 
     override fun getMovieDetails(id: Int) {
         repository.getMovieDetails(id, object : OnFetchDataJsonListener<MovieDetails> {
             override fun onSuccess(data: MovieDetails) {
-//                if (favoriteController?.checkFavorite(data.id) == true) {
-//                    data.isFavorite = true
-//                }
+                if (repositoryLocal.checkFavorite(data.id)) {
+                    data.isFavorite = true
+                }
                 view?.loadContentMovieOnSuccess(data)
             }
 
@@ -38,11 +41,11 @@ class MovieDetailPresenter(private val repository: MovieRepository) :
     }
 
     override fun deleteFavorite(id: Int) {
-//        favoriteController?.deleteFavorite(id)
+        repositoryLocal.deleteFavorite(id)
     }
 
     override fun insertFavorite(favorite: Favorite) {
-//        favoriteController?.saveFavoriteData(favorite)
+        repositoryLocal.saveFavorite(favorite)
     }
 
     override fun onStart() {
@@ -55,7 +58,6 @@ class MovieDetailPresenter(private val repository: MovieRepository) :
     override fun setContext(context: Context?) {
         context?.let {
             this.context = it
-//            favoriteController = FavoriteController(it)
         }
 
     }

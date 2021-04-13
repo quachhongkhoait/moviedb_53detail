@@ -13,7 +13,10 @@ class MainActivity : BaseActivity() {
 
     override fun onInit() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.mFrameMain, DetailMovieFragment.newInstance(412656))
+            .add(
+                R.id.mFrameMain,
+                DetailMovieFragment.newInstance(412656)
+            )//HomePageFragment.newInstance()
             .commit()
     }
 }

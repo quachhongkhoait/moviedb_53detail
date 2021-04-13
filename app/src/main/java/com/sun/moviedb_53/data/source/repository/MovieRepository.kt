@@ -1,23 +1,22 @@
-package com.sun.moviedb_53.data.source
+package com.sun.moviedb_53.data.source.repository
 
+import android.service.autofill.CharSequenceTransformation
 import com.sun.moviedb_53.data.model.HotMovie
 import com.sun.moviedb_53.data.model.MovieDetails
+import com.sun.moviedb_53.data.source.MovieDataSource
 import com.sun.moviedb_53.data.source.local.Favorite
-import com.sun.moviedb_53.data.source.local.MovieLocalDataSource
 import com.sun.moviedb_53.data.source.remote.MovieRemoteDataSource
 import com.sun.moviedb_53.data.source.remote.OnFetchDataJsonListener
 import com.sun.moviedb_53.utils.HotMovieType
 import com.sun.moviedb_53.utils.TypeMovieDetail
 
 class MovieRepository private constructor(
-    private val remote: MovieDataSource.Remote,
-    private val local: MovieDataSource.Local
+    private val remote: MovieDataSource.Remote
 ) {
 
     private object Holder {
         val INSTANCE = MovieRepository(
-            remote = MovieRemoteDataSource.instance,
-            local = MovieLocalDataSource()
+            MovieRemoteDataSource.instance
         )
     }
 
@@ -31,10 +30,6 @@ class MovieRepository private constructor(
 
     fun getMovieDetails(id: Int, listener: OnFetchDataJsonListener<MovieDetails>) {
         remote.getDataInMovieDetails(id, TypeMovieDetail.MOVIE_DETAILS, listener)
-    }
-
-    fun saveFavorite(favorite: Favorite){
-        return
     }
 
     companion object {

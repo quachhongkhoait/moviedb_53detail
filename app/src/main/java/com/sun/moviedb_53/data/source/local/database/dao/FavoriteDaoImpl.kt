@@ -15,13 +15,13 @@ class FavoriteDaoImpl private constructor(private val databaseHelper: DatabaseHe
             put(FavoriteTable.COL_TAG_LINE, favorite.tagLine)
             put(FavoriteTable.COL_RATE, favorite.rate)
         }
-        val result = databaseHelper.writableDatabase.insert(FavoriteTable.TABLE, null, values)
+        val result = databaseHelper.writableDatabase.insert(FavoriteTable.TABLE_NAME, null, values)
         return result != -1L
     }
 
     override fun deleteFavorite(id: Int): Boolean {
         return databaseHelper.writableDatabase.delete(
-                FavoriteTable.TABLE,
+                FavoriteTable.TABLE_NAME,
                 FavoriteTable.COL_ID + " =? ",
                 arrayOf(id.toString())
         ) > 0
@@ -34,7 +34,7 @@ class FavoriteDaoImpl private constructor(private val databaseHelper: DatabaseHe
         val args = arrayOf(id.toString())
 
         val cursor = databaseHelper.readableDatabase.query(
-                FavoriteTable.TABLE,
+                FavoriteTable.TABLE_NAME,
                 columns,
                 selection,
                 args,
@@ -48,10 +48,10 @@ class FavoriteDaoImpl private constructor(private val databaseHelper: DatabaseHe
         return count > 0
     }
 
-    override fun getListFavorite(): List<Favorite> {
+    override fun getListFavorite(): MutableList<Favorite> {
         val list = mutableListOf<Favorite>()
         val cursor = databaseHelper.readableDatabase.query(
-                FavoriteTable.TABLE,
+                FavoriteTable.TABLE_NAME,
                 null,
                 null,
                 null,
