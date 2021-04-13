@@ -2,6 +2,7 @@ package com.sun.moviedb_53.data.source
 
 import com.sun.moviedb_53.data.model.HotMovie
 import com.sun.moviedb_53.data.model.MovieDetails
+import com.sun.moviedb_53.data.source.local.Favorite
 import com.sun.moviedb_53.data.source.local.MovieLocalDataSource
 import com.sun.moviedb_53.data.source.remote.MovieRemoteDataSource
 import com.sun.moviedb_53.data.source.remote.OnFetchDataJsonListener
@@ -16,7 +17,7 @@ class MovieRepository private constructor(
     private object Holder {
         val INSTANCE = MovieRepository(
             remote = MovieRemoteDataSource.instance,
-            local = MovieLocalDataSource.instance
+            local = MovieLocalDataSource()
         )
     }
 
@@ -32,6 +33,9 @@ class MovieRepository private constructor(
         remote.getDataInMovieDetails(id, TypeMovieDetail.MOVIE_DETAILS, listener)
     }
 
+    fun saveFavorite(favorite: Favorite){
+        return
+    }
 
     companion object {
         val instance: MovieRepository by lazy { Holder.INSTANCE }

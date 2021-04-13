@@ -6,7 +6,6 @@
     <string name="favorite">Favorite</string>
     <string name="title_app">T H E   C I N E M A</string>
     <string name="search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="overview">Overview: \n</string>
+    <string name="failed_to_select">Failed to select</string>
 </resources>
