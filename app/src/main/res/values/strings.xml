@@ -8,4 +8,6 @@
     <string name="search">Search</string>
     <string name="overview">Overview: \n</string>
     <string name="failed_to_select">Failed to select</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -185,6 +185,9 @@
                     android:id="@+id/recyclerViewActor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintDimensionRatio="211:55"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -193,7 +196,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/recyclerViewActor"
                     android:layout_marginTop="@dimen/dp_10"
-                    app:layout_constraintTop_toBottomOf="@id/recyclerViewActor" />
+                    android:padding="@dimen/dp_10"
+                    app:layout_constraintDimensionRatio="825:550"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerViewActor"
+                    tools:listitem="@layout/item_recommendations" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

@@ -7,6 +7,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.GridLayoutManager
 import com.sun.moviedb_53.R
 import com.sun.moviedb_53.base.BaseFragment
 import com.sun.moviedb_53.data.model.MovieDetails
@@ -14,6 +15,7 @@ import com.sun.moviedb_53.data.source.repository.MovieRepository
 import com.sun.moviedb_53.data.source.local.Favorite
 import com.sun.moviedb_53.data.source.local.MovieLocalDataSource
 import com.sun.moviedb_53.data.source.repository.FavoriteRepository
+import com.sun.moviedb_53.extensions.addFragment
 import com.sun.moviedb_53.extensions.loadFromUrl
 import com.sun.moviedb_53.utils.Constant
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
@@ -26,6 +28,11 @@ class DetailMovieFragment : BaseFragment(), DetailMovieContact.View {
     private var idMovieDetails: Int? = null
     private var favorite: Favorite? = null
     private var detailPresenter: MovieDetailPresenter? = null
+    private val recommendationAdapter by lazy {
+        RecommendationAdapter {
+            addFragment(newInstance(it), R.id.mFrameMain)
+        }
+    }
 
     override fun getLayoutId() = R.layout.fragment_detail_movie
 
@@ -98,6 +105,14 @@ class DetailMovieFragment : BaseFragment(), DetailMovieContact.View {
     private fun selectedFavorite() {
         if (isFavoriteMovie) imageFavorite.setImageResource(R.drawable.ic_heart_red)
         else imageFavorite.setImageResource(R.drawable.ic_heart_default)
+    }
+
+    private fun onInitRecommend() {
+        recyclerViewRecommendations.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(requireActivity(), 2)
+            adapter = recommendationAdapter
+        }
     }
 
     override fun onError(exception: Exception?) {
