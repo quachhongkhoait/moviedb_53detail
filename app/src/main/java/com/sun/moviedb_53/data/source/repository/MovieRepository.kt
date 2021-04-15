@@ -11,26 +11,25 @@ import com.sun.moviedb_53.utils.HotMovieType
 import com.sun.moviedb_53.utils.TypeMovieDetail
 
 class MovieRepository private constructor(
-    private val remote: MovieDataSource.Remote
+        private val remote: MovieDataSource.Remote
 ) {
 
     private object Holder {
         val INSTANCE = MovieRepository(
-            MovieRemoteDataSource.instance
+                MovieRemoteDataSource.instance
         )
     }
 
     fun getMovie(
-        page: Int,
-        hotMovieType: HotMovieType,
-        listener: OnFetchDataJsonListener<MutableList<HotMovie>>
-    ) {
-        remote.getHotMovies(page, hotMovieType, listener)
-    }
+            page: Int,
+            hotMovieType: HotMovieType,
+            listener: OnFetchDataJsonListener<MutableList<HotMovie>>
+    ) = remote.getHotMovies(page, hotMovieType, listener)
 
-    fun getMovieDetails(id: Int, listener: OnFetchDataJsonListener<MovieDetails>) {
-        remote.getDataInMovieDetails(id, TypeMovieDetail.MOVIE_DETAILS, listener)
-    }
+    fun getMovieDetails(
+            id: Int,
+            listener: OnFetchDataJsonListener<MovieDetails>
+    ) = remote.getDataInMovieDetails(id, TypeMovieDetail.MOVIE_DETAILS, listener)
 
     companion object {
         val instance: MovieRepository by lazy { Holder.INSTANCE }

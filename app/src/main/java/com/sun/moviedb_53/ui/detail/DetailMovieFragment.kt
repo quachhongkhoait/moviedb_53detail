@@ -43,50 +43,61 @@ class DetailMovieFragment : BaseFragment(), DetailMovieContact.View {
     override fun onEvent() {
         imageFavorite.setOnClickListener {
             favorite?.let {
-                detailPresenter?.insertFavorite(it)
+                updateFavorite(it)
             }
+        }
+    }
+
+    private fun updateFavorite(favorite: Favorite) {
+        detailPresenter?.let {
+            if (isFavoriteMovie) it.deleteFavorite(favorite.id)
+            else it.insertFavorite(favorite)
+
+            isFavoriteMovie = !isFavoriteMovie
+
+            selectedFavorite()
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         detailPresenter = MovieDetailPresenter(
-            MovieRepository.instance,
-            FavoriteRepository.getInstance(MovieLocalDataSource.getInstance(requireActivity()))
+                MovieRepository.instance,
+                FavoriteRepository.getInstance(MovieLocalDataSource.getInstance(requireActivity()))
         )
         arguments?.let {
             idMovieDetails = it.getInt(ID_MOVIE_DETAIL)
         }
         detailPresenter?.let {
             it.setView(this)
-            it.setContext(requireContext())
             idMovieDetails?.let { id -> it.getMovieDetails(id) }
-            isFavoriteMovie = !isFavoriteMovie
         }
     }
 
     override fun loadContentMovieOnSuccess(movieDetails: MovieDetails) {
         movieDetails.run {
             favorite = Favorite(id, title, imagePoster, tagLine, rate)
-            isFavoriteMovie = isFavorite
         }
         initDataMovieDetail(movieDetails)
-        Log.d(TAG, "loadContentMovieOnSuccess: $movieDetails")
     }
 
     @SuppressLint("SetTextI18n")
     private fun initDataMovieDetail(movieDetail: MovieDetails) {
         textViewTitle.text = movieDetail.title
         textViewOverview.text = resources.getString(R.string.overview) + movieDetail.description
-        imageViewPoster.loadFromUrl(Constant.BASE_URL_IMAGE + movieDetail.imagePoster)
-        imageViewBackground.loadFromUrl(Constant.BASE_URL_IMAGE + movieDetail.imageUrl)
         textViewRelease.text = movieDetail.releaseDate
         textViewTagLine.text = movieDetail.tagLine
+        imageViewPoster.loadFromUrl(Constant.BASE_URL_IMAGE + movieDetail.imagePoster)
+        imageViewBackground.loadFromUrl(Constant.BASE_URL_IMAGE + movieDetail.imageUrl)
+
+        isFavoriteMovie = movieDetail.isFavorite
 
         selectedFavorite()
     }
 
     private fun selectedFavorite() {
+        if (isFavoriteMovie) imageFavorite.setImageResource(R.drawable.ic_heart_red)
+        else imageFavorite.setImageResource(R.drawable.ic_heart_default)
     }
 
     override fun onError(exception: Exception?) {

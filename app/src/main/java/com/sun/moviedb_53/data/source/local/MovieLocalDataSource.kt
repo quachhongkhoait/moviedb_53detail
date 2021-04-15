@@ -6,7 +6,7 @@ import com.sun.moviedb_53.data.source.local.database.DatabaseHelper
 import com.sun.moviedb_53.data.source.local.database.dao.FavoriteDaoImpl
 
 class MovieLocalDataSource private constructor(private val favoriteDaoImpl: FavoriteDaoImpl) :
-    MovieDataSource.Local {
+        MovieDataSource.Local {
 
     override fun saveMovie(favorite: Favorite) = favoriteDaoImpl.insertFavorite(favorite)
 

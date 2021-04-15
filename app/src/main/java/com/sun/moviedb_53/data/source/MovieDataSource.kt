@@ -10,13 +10,13 @@ interface MovieDataSource {
 
     interface Local {
 
-        fun saveMovie(favorite: Favorite) : Boolean
+        fun saveMovie(favorite: Favorite): Boolean
 
-        fun getListFavorite() : MutableList<Favorite>
+        fun getListFavorite(): MutableList<Favorite>
 
-        fun deleteFavorite(idMovie: Int) : Boolean
+        fun deleteFavorite(idMovie: Int): Boolean
 
-        fun checkFavorite(idMovie: Int) : Boolean
+        fun checkFavorite(idMovie: Int): Boolean
     }
 
     interface Remote {

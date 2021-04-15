@@ -8,7 +8,7 @@ import com.sun.moviedb_53.data.source.local.database.table.FavoriteTable
 const val TAG = "nnn"
 
 class DatabaseHelper private constructor(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+        SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(FavoriteTable.DB_MOVIE)

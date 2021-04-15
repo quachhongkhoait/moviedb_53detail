@@ -14,12 +14,12 @@ interface DetailMovieContact {
     }
 
     interface Presenter : BasePresenter<View> {
-        fun setContext(context: Context?)
         fun getMovieDetails(id: Int)
-        fun getVideoTrailer(idMovieDetails: Int)
+        fun getVideoTrailer(idMovieDetail: Int)
         fun getListMovieRecommendations(idMovieDetails: Int)
         fun getCastsInMovieDetails(idMovieDetails: Int)
-        fun deleteFavorite(id: Int)
-        fun insertFavorite(favorite: Favorite)
+        fun deleteFavorite(id: Int): Boolean
+        fun insertFavorite(favorite: Favorite): Boolean
+        fun checkFavorite(idMovieDetail: Int): Boolean
     }
 }
