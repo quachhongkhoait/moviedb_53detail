@@ -2,6 +2,7 @@ package com.sun.moviedb_53.ui
 
 import com.sun.moviedb_53.R
 import com.sun.moviedb_53.base.BaseActivity
+import com.sun.moviedb_53.ui.actor.ActorFragment
 import com.sun.moviedb_53.ui.detail.DetailMovieFragment
 import com.sun.moviedb_53.ui.homepage.HomePageFragment
 
@@ -15,7 +16,7 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.mFrameMain,
-                DetailMovieFragment.newInstance(412656)
+                ActorFragment.newInstance(412656)
             )//HomePageFragment.newInstance()
             .commit()
     }
